@@ -92,6 +92,8 @@ public class MainActivity extends AppCompatActivity {
      * @param userClassification could be renter, lessor, or admin.
      */
     private void signUpUser(String email, String password, String userClassification){
+        //check userClassification. If Admin, check number of Admin roles in database. If 1,
+        //tell user to create another account type. Do not allow creation of more than 1 admin.
         //generate user ID
         //if valid, make a call to database and add the items
         //create a new user instance with User(String ID, String Classification), and pass to user
