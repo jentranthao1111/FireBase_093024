@@ -1,17 +1,37 @@
 package com.example.rentify;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.text.TextUtils;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+
+
 public class MainActivity extends AppCompatActivity {
 
     private User user;
+    private Button register;
+    private Button login;
+
+    private EditText email;
+    private EditText password;
+
+    private FirebaseAuth auth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,7 +43,35 @@ public class MainActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
+        register = findViewById(R.id.register);
+        register.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, RegisterActivity.class));
+                finish(); // will not go back to the main activity
+            }
+        });
+
+        login = findViewById(R.id.login);
+        login.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View v) {
+                //if it succeeds, the MainActivity intent to startActivity
+                startActivity(new Intent(MainActivity.this, LoginActivity.class));
+                finish(); // will not go back to the MainActivity
+            }
+        });
+
+
+
+
     }
+
+
+
 
     //Initialize firebase
 
@@ -110,3 +158,4 @@ public class MainActivity extends AppCompatActivity {
         //make sure to pass in the user variable to the new intent
     }
 }
+
